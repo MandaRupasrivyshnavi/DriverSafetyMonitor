@@ -1,0 +1,157 @@
+{
+  "version": 1,
+  "author": "Driver Safety Project",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": 0,
+      "left": 0,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-gas-sensor",
+      "id": "mq2",
+      "top": -190,
+      "left": -330,
+      "attrs": {
+        "ppm": "400"
+      }
+    },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "eyePot",
+      "top": -20,
+      "left": -330,
+      "attrs": {
+        "value": "200"
+      }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "mobileBtn",
+      "top": 130,
+      "left": -330,
+      "attrs": {
+        "color": "blue",
+        "label": "MOBILE",
+        "key": "M"
+      }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "buckleBtn",
+      "top": 220,
+      "left": -330,
+      "attrs": {
+        "color": "green",
+        "label": "BELT BUCKLE",
+        "key": "B"
+      }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "beltPosBtn",
+      "top": 310,
+      "left": -330,
+      "attrs": {
+        "color": "yellow",
+        "label": "BELT CHEST",
+        "key": "C"
+      }
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "buzzer",
+      "top": 260,
+      "left": 310,
+      "attrs": {
+        "volume": "0.5"
+      }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "redLed",
+      "top": 130,
+      "left": 340,
+      "attrs": {
+        "color": "red",
+        "label": "WARNING"
+      }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "redRes",
+      "top": 160,
+      "left": 270,
+      "rotate": 90,
+      "attrs": {
+        "value": "220"
+      }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "greenLed",
+      "top": 30,
+      "left": 340,
+      "attrs": {
+        "color": "green",
+        "label": "NORMAL"
+      }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "greenRes",
+      "top": 60,
+      "left": 270,
+      "rotate": 90,
+      "attrs": {
+        "value": "220"
+      }
+    },
+    {
+      "type": "board-ssd1306",
+      "id": "oled",
+      "top": -190,
+      "left": 280,
+      "attrs": {
+        "i2cAddress": "0x3c"
+      }
+    }
+  ],
+  "connections": [
+    ["mq2:VCC", "esp:5V", "red", []],
+    ["mq2:GND", "esp:GND.1", "black", []],
+    ["mq2:AO", "esp:35", "green", []],
+
+    ["eyePot:VCC", "esp:3V3", "red", []],
+    ["eyePot:GND", "esp:GND.1", "black", []],
+    ["eyePot:SIG", "esp:34", "green", []],
+
+    ["mobileBtn:1.l", "esp:32", "blue", []],
+    ["mobileBtn:2.l", "esp:GND.1", "black", []],
+
+    ["buckleBtn:1.l", "esp:27", "green", []],
+    ["buckleBtn:2.l", "esp:GND.1", "black", []],
+
+    ["beltPosBtn:1.l", "esp:33", "orange", []],
+    ["beltPosBtn:2.l", "esp:GND.1", "black", []],
+
+    ["buzzer:2", "esp:25", "purple", []],
+    ["buzzer:1", "esp:GND.1", "black", []],
+
+    ["esp:26", "redRes:1", "red", []],
+    ["redRes:2", "redLed:A", "red", []],
+    ["redLed:C", "esp:GND.1", "black", []],
+
+    ["esp:14", "greenRes:1", "green", []],
+    ["greenRes:2", "greenLed:A", "green", []],
+    ["greenLed:C", "esp:GND.1", "black", []],
+
+    ["oled:VCC", "esp:3V3", "red", []],
+    ["oled:GND", "esp:GND.1", "black", []],
+    ["oled:SDA", "esp:21", "blue", []],
+    ["oled:SCL", "esp:22", "yellow", []]
+  ]
+}
